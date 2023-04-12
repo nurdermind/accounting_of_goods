@@ -40,7 +40,13 @@ INSTALLED_APPS = [
 ]
 
 INSTALLED_APPS += [
-    'goods'
+
+    'rest_framework',
+
+]
+
+INSTALLED_APPS += [
+    'goods',
 ]
 
 MIDDLEWARE = [

@@ -1,6 +1,7 @@
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from .models import Good
+from .tasks import generate__and__send_stock_report
 
 from loguru import logger
 
@@ -14,4 +15,4 @@ def good_stock_update_handler(sender, **kwargs):
 
         previous_good = Good.objects.get(pk=good.pk)
         if previous_good.stock != good.stock:
-            logger.debug(f"Репорт {good=}")
+            generate__and__send_stock_report(good)

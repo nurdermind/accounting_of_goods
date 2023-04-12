@@ -18,17 +18,20 @@ class ExtraActionMixin(mixins.UpdateModelMixin, viewsets.GenericViewSet):
     def apply_changes(self, request, get_new_value_func):
         instance = self.get_object()
         serializer = self.get_serializer(instance, data=request.data, partial=True)
-        serializer.is_valid(raise_exception=True)
+        serializer.is_valid(raise_exception=False)
 
         fields_for_increase = serializer.Meta.fields
 
+        changed_data = serializer.validated_data
         for field_for_increase in fields_for_increase:
-            if serializer.validated_data.get(field_for_increase) is not None:
-                serializer.validated_data[field_for_increase] = get_new_value_func(
+            if changed_data.get(field_for_increase) is not None:
+                changed_data[field_for_increase] = get_new_value_func(
                     original_value=getattr(instance, field_for_increase),
-                    other_value=serializer.validated_data[field_for_increase]
+                    other_value=changed_data[field_for_increase]
                 )
 
+        serializer = self.get_serializer(instance, data=changed_data, partial=True)
+        serializer.is_valid(raise_exception=True)
         self.perform_update(serializer)
         return Response(serializer.validated_data)
 

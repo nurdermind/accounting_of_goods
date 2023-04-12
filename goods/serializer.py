@@ -16,6 +16,7 @@ class GoodIncreaseSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class GoodReduceSerializer(serializers.HyperlinkedModelSerializer):
+
     class Meta:
         model = Good
         fields = ('stock',)

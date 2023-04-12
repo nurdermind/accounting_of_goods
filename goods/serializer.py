@@ -1,4 +1,3 @@
-from django.urls import path, include
 from .models import Good
 from rest_framework import routers, serializers, viewsets
 

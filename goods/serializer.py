@@ -8,3 +8,14 @@ class GoodSerializer(serializers.HyperlinkedModelSerializer):
         model = Good
         fields = '__all__'
 
+
+class GoodIncreaseSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Good
+        fields = ('stock',)
+
+
+class GoodReduceSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Good
+        fields = ('stock',)

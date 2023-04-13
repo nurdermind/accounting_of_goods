@@ -8,8 +8,8 @@ from django.conf import settings
 
 
 class BaseReportAdapter(ABC):
+    FORMAT_SUPPORTED = ''
     report_root_path = Path(settings.BASE_DIR) / 'goods' / 'reports'
-    _formats_supported = []
 
     def __init__(self, title: str, data: List[List[Union[str, int]]], section: str = 'default'):
         self.title = title
@@ -18,7 +18,7 @@ class BaseReportAdapter(ABC):
         self._section_path = self.report_root_path / section
         os.makedirs(self._section_path, exist_ok=True)
 
-        self._file_path = self._section_path / f"{self.title}_{datetime.now()}"
+        self._file_path = self._section_path / f"{self.title}_{datetime.now()}.{self.FORMAT_SUPPORTED}"
 
     @abstractmethod
     def generate(self, ):
@@ -34,4 +34,4 @@ class BaseReportAdapter(ABC):
 
     @classmethod
     def is_format_supported(cls, report_format):
-        return report_format in cls._formats_supported
+        return report_format == cls.FORMAT_SUPPORTED

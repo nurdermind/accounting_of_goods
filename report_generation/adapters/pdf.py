@@ -8,6 +8,7 @@ from .base import BaseReportAdapter
 
 
 class PDFReportAdapter(BaseReportAdapter):
+    FORMAT_SUPPORTED = 'pdf'
 
     def _get_doc(self):
         doc = SimpleDocTemplate(self.file_path, pagesize=letter)

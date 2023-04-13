@@ -8,8 +8,8 @@ from .base_report import BaseReport
 
 class ModelReport(BaseReport):
 
-    def __init__(self, type_report: str, old_instance, new_instance, lookup_fields: List[str]):
-        super(ModelReport, self).__init__(type_report)
+    def __init__(self, report_format: str, old_instance, new_instance, lookup_fields: List[str]):
+        super(ModelReport, self).__init__(report_format)
         self._old_instance = old_instance
         self._new_instance = new_instance
         self.lookup_fields = lookup_fields

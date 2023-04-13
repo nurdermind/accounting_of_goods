@@ -143,3 +143,5 @@ REST_FRAMEWORK = {
 }
 
 CELERY_BROKER_URL = 'amqp://@localhost'
+
+REPORT_FORMAT = 'pdf'

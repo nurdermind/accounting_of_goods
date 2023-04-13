@@ -6,13 +6,13 @@ from .adapters import adapters
 
 class BaseReport(ABC):
 
-    def __init__(self, type_report: str):
-        self.type_report = type_report
+    def __init__(self, report_format: str):
+        self.report_format = report_format
         self._adapter_class = self._get_adapter_class()
 
     def _get_adapter_class(self):
-        if self.type_report in adapters:
-            return adapters[self.type_report]
+        if self.report_format in adapters:
+            return adapters[self.report_format]
         else:
             raise ValueError("Unknown report type")
 

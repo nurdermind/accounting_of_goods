@@ -1,7 +1,10 @@
+from pathlib import Path
+
+from fontTools.ttLib import TTFont
 from reportlab.lib.pagesizes import letter
 from reportlab.lib import colors
 from reportlab.lib.styles import getSampleStyleSheet
-from reportlab.lib.units import inch
+from reportlab.pdfbase import pdfmetrics
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer
 
 from goods.report_generation.adapters.base import BaseReportAdapter
@@ -10,7 +13,8 @@ from goods.report_generation.adapters.base import BaseReportAdapter
 class PDFReportAdapter(BaseReportAdapter):
 
     def _get_doc(self):
-        return SimpleDocTemplate(self.file_path, pagesize=letter)
+        doc = SimpleDocTemplate(self.file_path, pagesize=letter)
+        return doc
 
     def _get_header(self):
         styles = getSampleStyleSheet()

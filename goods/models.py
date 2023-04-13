@@ -12,4 +12,4 @@ class Good(models.Model):
 
     class Meta:
         verbose_name = _('Good')
-        verbose_name_plural = _('Goods')
+        verbose_name_plural = _('Товары')

@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import List
 
-from .adapters import adapters
+from .adapters import get_adapter_class
 
 
 class BaseReport(ABC):
@@ -11,8 +11,9 @@ class BaseReport(ABC):
         self._adapter_class = self._get_adapter_class()
 
     def _get_adapter_class(self):
-        if self.report_format in adapters:
-            return adapters[self.report_format]
+        adapter_class = get_adapter_class(self.report_format)
+        if adapter_class:
+            return adapter_class
         else:
             raise ValueError("Unknown report type")
 

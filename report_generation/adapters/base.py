@@ -9,6 +9,7 @@ from django.conf import settings
 
 class BaseReportAdapter(ABC):
     report_root_path = Path(settings.BASE_DIR) / 'goods' / 'reports'
+    _formats_supported = []
 
     def __init__(self, title: str, data: List[List[Union[str, int]]], section: str = 'default'):
         self.title = title
@@ -30,3 +31,7 @@ class BaseReportAdapter(ABC):
     @file_path.setter
     def file_path(self, value: str):
         self._file_path = Path(value)
+
+    @classmethod
+    def is_format_supported(cls, report_format):
+        return report_format in cls._formats_supported

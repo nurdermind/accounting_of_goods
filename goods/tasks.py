@@ -1,4 +1,5 @@
 from celery import shared_task
+from loguru import logger
 
 from django.core.mail import mail_admins, EmailMessage
 from django.conf import settings
@@ -13,7 +14,8 @@ def send_model_report(old_instance, new_instance, lookup_fields, report_format):
                          lookup_fields=lookup_fields,
                          )
     report_path = report.generate()
-    print(report_path)
+
+    logger.info("Sending model report %s" % report_path)
     mail = EmailMessage(
         'Stock changes',
         report.title,

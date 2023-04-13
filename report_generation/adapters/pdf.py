@@ -1,13 +1,10 @@
-from pathlib import Path
-
-from fontTools.ttLib import TTFont
 from reportlab.lib.pagesizes import letter
 from reportlab.lib import colors
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.pdfbase import pdfmetrics
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer
 
-from goods.report_generation.adapters.base import BaseReportAdapter
+from .base import BaseReportAdapter
 
 
 class PDFReportAdapter(BaseReportAdapter):

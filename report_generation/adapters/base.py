@@ -6,6 +6,7 @@ from datetime import datetime
 
 from django.conf import settings
 
+
 class BaseReportAdapter(ABC):
     report_root_path = Path(settings.BASE_DIR) / 'goods' / 'reports'
 
